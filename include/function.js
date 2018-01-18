@@ -24,20 +24,22 @@ async function getChildDirTree(dirpath){
                      * 这里还是个坑，需要优化
                      * 优化思路是在递归的时候检测文件类型，而不是在 for 循环里面检测文件类型，这样有一个异步的过程，很慢
                      */
-                    let filestat = await getFsStat(path.join(dirpath,files[i]));
+                    let filepath = path.join(dirpath,files[i])
+                    let filestat = await getFsStat(filepath);
                     let isfile = filestat.isFile();
                     let file = {
-                        path:files[i],
+                        path:filepath,
+                        alias:files[i],
                         type: isfile ? 'file' : 'directory',
-                        atime:stat.atime,
-                        mtime:stat.mtime,
-                        ctime:stat.ctime,
-                        birthtime:stat.birthtime
+                        atime:filestat.atime,
+                        mtime:filestat.mtime,
+                        ctime:filestat.ctime,
+                        birthtime:filestat.birthtime
                     };
                     if(isfile){
                         file.filetype = path.extname(files[i]);
                     }
-                    pathobj = await getChildDirTree(path.join(dirpath,files[i]));
+                    pathobj = await getChildDirTree(filepath);
                     if(pathobj.length){
                         file.children = pathobj;
                     }
@@ -46,7 +48,6 @@ async function getChildDirTree(dirpath){
             }
             return pathval;
         }
-
     }catch(e){
         console.log(e);
         throw e;
@@ -56,17 +57,27 @@ async function getChildDirTree(dirpath){
 //包含父级的目录结构
 
 async function getDirTree(dirpath){
+    let filestat = await getFsStat(dirpath);
+    let isfile = filestat.isFile();
     let dirTree = {
-        path:dirpath
+        path:dirpath,
+        alias:path.basename(dirpath),
+        type: isfile ? 'file' : 'directory',
+        atime:filestat.atime,
+        mtime:filestat.mtime,
+        ctime:filestat.ctime,
+        birthtime:filestat.birthtime
     };
-    let childrenDirTree = await getChildDirTree(dirpath);
-    if(childrenDirTree.length){
-        dirTree.children = childrenDirTree;
+    if(!isfile){
+        let childrenDirTree = await getChildDirTree(dirpath);
+        if(childrenDirTree.length){
+            dirTree.children = childrenDirTree;
+        }
     }
     return dirTree;
 }
 
-getDirTree("E:\\CODE\\ASP").then(function(res){
+getDirTree("D:\\Project\\C++\\").then(function(res){
     console.log(JSON.stringify(res,null,2));
 });
 
