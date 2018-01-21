@@ -77,10 +77,6 @@ async function getDirTree(dirpath){
     return dirTree;
 }
 
-getDirTree("D:\\Project\\C++\\").then(function(res){
-    console.log(JSON.stringify(res,null,2));
-});
-
 function getFsStat(dirpath){
     return new Promise(function(resolve,reject){
         fs.stat(dirpath,function(err,stats){
