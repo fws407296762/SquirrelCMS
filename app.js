@@ -2,15 +2,15 @@
  * Created by fws on 2018/1/21.
  */
 
-const express = require("express");
-const path = require("path");
-const ejs = require("ejs");
-const templateRouter = require("./router/template");
-const adminRouter = require("./router/admin");
+import express from "express";
+import path from "path";
+import ejs from "ejs";
+import templateRouter from "./router/template";
+import adminRouter from "./router/admin";
 
 let app = express();
 app.engine("html",ejs.renderFile);
-app.set("views engine",".html");
+app.set("view engine","html");
 
 //模板目录
 let template = express();
@@ -20,11 +20,14 @@ let template = express();
 
 //CMS后台目录
 let admin = express();
+adminRouter(admin);
 admin.set("views",path.join(__dirname,"/admin/views"));
-admin.use(adminRouter);
-admin.use(express.static(__dirname + "/admin/static"));
+app.use("/admin/static",express.static(path.join(__dirname,"/admin/static")));
+
 
 app.use("/",template);
 app.use("/admin",admin);
 
-app.listen(9090);
+app.listen(9090,function(){
+    console.log("服务器开启")
+});
