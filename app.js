@@ -22,7 +22,7 @@ let template = express();
 let admin = express();
 adminRouter(admin);
 admin.set("views",path.join(__dirname,"/admin/views"));
-app.use("/admin/static",express.static(path.join(__dirname,"/admin/static")));
+app.use("/admin/static",express.static(path.join(__dirname,"/admin/static"),{redirect:true}));
 
 
 app.use("/",template);

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/admin/static/css/lib/global.css">
+</head>
+<body>
+    <%- include('include/header.html')%>
+    <div class="container">
+        <%- include('include/menu.html')%>
+        <div id="root" class="main">
+            <div class="main-column-box">
+                <div class="main-column-header">
+                    <h3 class="main-column-title"><%=columnTitle%></h3>
+                </div>
+                <div class="main-column-body">
+                    <table class="data-table">
+                        <col width="50" />
+                        <col width="auto" />
+                        <col width="95" />
+                        <col width="88" />
+                        <col width="88" />
+                        <col width="88" />
+                        <col width="200" />
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>频道名称</th>
+                                <th class="tac">添加子分类</th>
+                                <th class="tac">添加内容</th>
+                                <th class="tac">页面模式</th>
+                                <th class="tac">是否显示</th>
+                                <th class="tac">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" align="center">暂无数据</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

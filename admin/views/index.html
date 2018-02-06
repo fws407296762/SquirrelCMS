@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><%=title%></title>
-    <link rel="stylesheet" href="static/css/lib/global.css">
+    <link rel="stylesheet" href="/admin/static/css/lib/global.css">
 </head>
 <body>
     <%- include('include/header.html')%>
@@ -28,9 +28,9 @@
                                     <table class="data-table">
                                         <col width="120">
                                         <tbody>
-                                            <tr><td class="data-table-column-title">系统名称</td><td></td></tr>
-                                            <tr><td class="data-table-column-title">系统设计</td><td></td></tr>
-                                            <tr><td class="data-table-column-title">系统版本</td><td></td></tr>
+                                            <tr><td class="data-table-column-title">系统名称</td><td><%=systemName%></td></tr>
+                                            <tr><td class="data-table-column-title">系统设计</td><td><%=systemAutor%></td></tr>
+                                            <tr><td class="data-table-column-title">系统版本</td><td><%=systemVersion%></td></tr>
                                             <tr><td class="data-table-column-title">授权用户</td><td></td></tr>
                                         </tbody>
                                     </table>
@@ -40,10 +40,10 @@
                                         <col width="280">
                                         <tbody>
                                             <tr><td class="data-table-column-title">当前域名</td><td><a href="<%=host%>"><%=host%></a></td></tr>
-                                            <tr><td class="data-table-column-title">服务器版本</td><td></td></tr>
+                                            <tr><td class="data-table-column-title">服务器版本</td><td><%=serverVersion%></td></tr>
                                             <tr><td class="data-table-column-title">脚本执行时间</td><td></td></tr>
                                             <tr><td class="data-table-column-title">服务器接受语言</td><td></td></tr>
-                                            <tr><td class="data-table-column-title">访问者浏览器版本及系统</td><td></td></tr>
+                                            <tr><td class="data-table-column-title">访问者浏览器版本及系统</td><td><%=browser%></td></tr>
                                         </tbody>
                                     </table>
                                 </td>
@@ -63,8 +63,8 @@
                                 <table class="data-table">
                                     <col width="120">
                                     <tbody>
-                                        <tr><td class="data-table-column-title">电子邮件</td><td>系统名称 -›</td></tr>
-                                        <tr><td class="data-table-column-title">QQ</td><td>系统名称 -›</td></tr>
+                                        <tr><td class="data-table-column-title">电子邮件</td><td><%=email%></td></tr>
+                                        <tr><td class="data-table-column-title">QQ</td><td><%=qq%></td></tr>
                                     </tbody>
                                 </table>
                             </td>
