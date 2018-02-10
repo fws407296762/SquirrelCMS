@@ -35,9 +35,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%if(!result.length){%>
                             <tr>
                                 <td colspan="7" align="center">暂无数据</td>
                             </tr>
+                            <%}else{%>
+                            <% result.forEach(function(r,index){ %>
+                                <tr>
+                                    <td><%=index+1%></td>
+                                    <td><%=r.pageName%></td>
+                                    <td align="center"><a href="">添加子类</a></td>
+                                    <td align="center"><a href="">添加内容</a></td>
+                                    <td align="center">单页模式</td>
+                                    <td align="center">否</td>
+                                    <td align="center"><a href="">移动</a></td>
+                                </tr>
+                            <% })} %>
                         </tbody>
                     </table>
                 </div>
